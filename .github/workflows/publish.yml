@@ -28,10 +28,9 @@ jobs:
         with:
           user: ${{ secrets.NUGET_USER }}
 
-      # --- Push step disabled for first run; we're only proving the OIDC handshake ---
-      # - name: Push to NuGet
-      #   run: |
-      #     dotnet nuget push ./artifacts/*.nupkg \
-      #       --api-key "${{ steps.login.outputs.NUGET_API_KEY }}" \
-      #       --source https://api.nuget.org/v3/index.json \
-      #       --skip-duplicate
+      - name: Push to NuGet
+        run: |
+          dotnet nuget push ./artifacts/*.nupkg \
+            --api-key "${{ steps.login.outputs.NUGET_API_KEY }}" \
+            --source https://api.nuget.org/v3/index.json \
+            --skip-duplicate
